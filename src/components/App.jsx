@@ -10,15 +10,13 @@ import { Notification } from './Notification/Notification';
 import { NotificationFilter } from './NotificationFilter/NotificationFilter';
 
 
+
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
     const storedContacts = JSON.parse(window.localStorage.getItem('contacts'));
     return storedContacts || initialContacts;
   });
   
-
-  const [filter, setFilter] = useState('');
-
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -48,10 +46,13 @@ export const App = () => {
   };
 
 
+  const [filter, setFilter] = useState('');
+
+
   const filterByString = (field, filterValue) => {
     return field.toLowerCase().trim().includes(filterValue.toLowerCase().trim());
   };
-  
+
 
   const filteredContacts = () => {
     return contacts.filter(
